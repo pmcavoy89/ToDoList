@@ -18,6 +18,15 @@ class ToDoItem extends Component {
     });
   }
 
+  show(anItem, withCheckedValue) {
+    let returnValue = anItem;
+
+    if(withCheckedValue)
+      returnValue =  <strike>{anItem}</strike>;
+
+    return returnValue;
+  }
+
   render() {
     const { anItem } = this.props;
     const { checked } = this.state;
@@ -25,7 +34,7 @@ class ToDoItem extends Component {
       <div>
         <label>
           <input type="checkbox" onClick={this.strikeThrough} checked={checked} />
-          {anItem}
+          {this.show(anItem, checked)}
         </label>
         <br />
       </div>
