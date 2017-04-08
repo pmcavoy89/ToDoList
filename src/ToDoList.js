@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-
-const ToDoItem = ({ anItem }) => (
-  <div>
-    <label>
-      <input type="checkbox" />
-      {anItem}
-    </label>
-    <br />
-  </div>
-);
+import ToDoItem from './ToDoItem';
 
 class ToDoList extends Component {
+  create(anItem, index) {
+    return (<ToDoItem key={index} anItem={anItem} />);
+  }
 
   render() {
     const { aList } = this.props;
@@ -18,9 +12,7 @@ class ToDoList extends Component {
     return (
       <div id="to-do-list">
         {
-          aList.map((anItem, index) =>
-            <ToDoItem key={index} anItem={anItem} />
-          )
+          aList.map(this.create)
         }
       </div>
     );
